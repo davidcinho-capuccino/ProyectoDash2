@@ -1,0 +1,251 @@
+:root {
+    --w-azul-oscuro: #005d70;
+    --w-verde-teal: #1ba29a;
+    --w-verde-lima: #8dc63f;
+    --w-cian: #00aeef;
+    --bg: #f0f4f5;
+    --text: #2c3e50;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg);
+    margin: 0;
+    display: flex;
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* SIDEBAR */
+#sidebar {
+    width: 260px;
+    background: white;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 1px solid #d1e1e4;
+    padding: 20px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+#sidebar.hidden {
+    transform: translateX(-260px);
+}
+
+.logo-boton {
+    width: 100%;
+    max-width: 150px;
+    display: block;
+    margin: 0 auto 20px auto;
+    cursor: pointer;
+}
+
+#lista-participantes {
+    height: calc(100vh - 150px);
+    overflow-y: auto;
+}
+
+.nav-link {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--w-azul-oscuro);
+}
+
+.nav-link:hover {
+    background: #f0f9f8;
+}
+
+.nav-link.active {
+    background: var(--w-azul-oscuro);
+    color: white;
+}
+
+/* CONTENIDO PRINCIPAL */
+#main-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+#main-content.expanded {
+    margin-left: 0;
+}
+
+.header {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--w-verde-lima);
+    flex-shrink: 0;
+}
+
+/* VISTAS */
+.view-section {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.view-section.active {
+    display: flex;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #e1e8ed;
+    box-shadow: var(--shadow);
+}
+
+/* GRÁFICO + LEYENDA */
+.chart-layout {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+    min-height: 0;
+}
+
+.chart-main-container {
+    flex: 1;
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.legend-side {
+    width: 240px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+    border: 1px solid #e1e8ed;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+
+.legend-item:hover {
+    background: #f0f4f5;
+    border-color: #ddd;
+}
+
+.color-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* VISTA INDIVIDUAL */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
+    height: 100%;
+    min-height: 0;
+}
+
+.left-col {
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+}
+
+.cal-card {
+    background: linear-gradient(135deg, var(--w-azul-oscuro), var(--w-verde-teal));
+    color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-radius: 12px;
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    flex: 1;
+    align-content: space-around;
+}
+
+.day-box {
+    background: white;
+    color: var(--w-azul-oscuro);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    height: 30px;
+}
+
+.chart-small-container {
+    position: relative;
+    height: 130px;
+    width: 100%;
+}
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--w-verde-lima);
+    z-index: 2000;
+}
+
+.toggle-tab {
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    width: 25px;
+    height: 50px;
+    background: var(--w-azul-oscuro);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+}
